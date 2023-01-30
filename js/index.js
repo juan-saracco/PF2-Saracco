@@ -41,13 +41,21 @@ let productos = [
     }
 ]
 
+//escucho el evento
 for (let  i= 0; i < carrito.length; i++) {
     carrito[i].addEventListener("click", ()=>{
         numeroCarrito(productos[i]);
         costeTotal(productos[i]);
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Agregaste el producto al carrito',
+            showConfirmButton: false,
+            timer: 1000
+          })
     })
 }
-
+//cuento cuantos productos tengo en el carrito
 function numeroCarrito(producto) {
 
     let numeroProducto = localStorage.getItem("numerosCarrito");
@@ -62,6 +70,8 @@ function numeroCarrito(producto) {
     setItems(producto);
 }
 
+
+//los agrego al carrito
 function setItems(producto) {
 
     let productosCarrito = localStorage.getItem("productosEnCarrito");
@@ -84,6 +94,7 @@ function setItems(producto) {
     localStorage.setItem("productosEnCarrito", JSON.stringify(productosCarrito));
 }
 
+//calculo el coste total
 function costeTotal(producto) {
     let costoCarrito = localStorage.getItem("costeTotal");
 
@@ -99,7 +110,7 @@ function costeTotal(producto) {
     }
 
 }
-
+//funcion para mostrar las cards en el carrito
 function mostarCarrito() {
     let productosCarrito = localStorage.getItem("productosEnCarrito");
     productosCarrito = JSON.parse(productosCarrito)
@@ -114,14 +125,13 @@ function mostarCarrito() {
         Object.values(productosCarrito).map(producto => {
             productoContainer.innerHTML += ` 
             <div class="producto">
-            <input type="button" value=" X ">
             <img class="producto-img" src="./img/${producto.etiqueta}.jpg">
             <span class="producto-spantitle">${producto.nombre}</span> 
             $<div class="productos-precio">${producto.precio}</div>
             <div class="productos-cantidad">
-            <input type="button" value="  ◀  ">
+            <input id="restar" type="button" value="  ◀  ">
             <span class="producto-cantidad-valor">${producto.enCarrito}</span>
-            <input type="button" value="  ▶ ">	
+            <input id="sumar" type="button" value="  ▶ ">	
             </div>
             <div class="productos-total">
             $${producto.enCarrito * producto.precio}
@@ -143,5 +153,17 @@ function mostarCarrito() {
         `
     }
 }
+
+//funcion sumarCantidad
+function modificarCantidad() {
+    let sumar = document.getElementById("#sumar");
+    let restar = document.getElementById("#restar");
+
+    restar.addEventListener("click", ()=>{
+        productos.enCarrito = localStorage.setItem("productosEnCarrito", productos.enCarrito - 1 );
+    })
+}
+
+
 //corro la funcion al cargar la pagina
 mostarCarrito()

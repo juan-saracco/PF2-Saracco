@@ -15,10 +15,10 @@ a{
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    margin: 2rem 2rem;
 }
 
 .header-icon{
-    margin-left: 4rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,6 +35,7 @@ a{
     justify-content: center;
     align-items: center;
     font-size: 3rem;
+    margin: auto;
 }
 
 .header-ul{
@@ -55,7 +56,7 @@ a{
 }
 
 .main-container{
-    width: 100vw;
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
@@ -72,6 +73,7 @@ a{
     width: 20rem;
     gap: 1rem;
     font-size: 1.2em;
+    padding: 1rem;
 }
 
 .main-infocard > a {
@@ -84,14 +86,12 @@ a{
 
 .main-img{
     height: 15rem;
-    width: 100%;
     object-fit: cover;
 }
 
 .footer-container{
     background-color: black;
     height: 10vh;
-    width: 100vw;
     display: flex;
     align-items: center;
     justify-items: center;
@@ -169,6 +169,15 @@ a{
     align-items: center;
     gap: 20px;
     font-size: 1.5em;
+    margin-top: 1rem;
+}
+
+#borrar{
+    font-size: 1em;
+    background-color: black;
+    color: white;
+    padding: .5rem;
+    border-radius: 5px;
 }
 
 .producto-spantitle{
@@ -181,5 +190,36 @@ a{
 .producto-cantidad-valor{
     padding: 1rem;
 }
+
+/*-----------------------------MQ-----------------------------------*/
+
+@media screen and (max-width: 1100px){
+
+    .header-title{
+        font-size: 1.5rem;
+    }
+
+    .main-img {
+        height: 8rem;
+        object-fit: cover;
+    }
+
+    .main-infocard {
+        font-size: 1em;
+
+    }
+
+    .main-infocard > a {
+        padding: 1rem;
+
+    }
+
+    .main-infocard {
+         width: 100%;
+
+    }
+
+}
+
 
 
